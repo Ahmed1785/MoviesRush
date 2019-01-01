@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MoviesRush.Models.Movie>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Genre)
+                </th>
+                <th></th>
+            </tr>
+    </thead>
+    <tbody>
+@foreach (var movie in Model) {
+        <tr>
+            <td>
+                @Html.ActionLink(movie.Name, "Edit", "Movie", new {id = movie.Id }, null)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => movie.Genre)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@movie.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@movie.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@movie.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
